@@ -1,10 +1,10 @@
+<h1 align="center">Transmission Modern</h1>
+
 <p align="center">
   <img src="docs/screenshots/transmission-modern-showcase.png"
        alt="Transmission Modern by M1jsXploit"
        width="100%">
 </p>
-
-<h1 align="center">Transmission Modern</h1>
 
 <p align="center">
   A modern, responsive Transmission Web UI with 8 customizable themes.
