@@ -1,0 +1,16 @@
+/* v2.4: desktop Minimal — torrent information first, wide animated progress below. */
+@media (min-width:761px) and (min-height:601px) {
+ .torrent-table-wide-progress { border-spacing:0 0; }
+ .torrent-table-wide-progress thead th { padding-bottom:13px; }
+ .torrent-table-wide-progress .torrent-main-row td { padding-top:12px; padding-bottom:4px; border-bottom:0; }
+ .torrent-table-wide-progress .torrent-main-row td:first-child { border-radius:13px 0 0 0; }
+ .torrent-table-wide-progress .torrent-main-row td:last-child { border-radius:0 13px 0 0; }
+ .torrent-table-wide-progress .torrent-wide-progress-row td { padding:3px 16px 15px; background:var(--panel); border:1px solid var(--border); border-top:0; border-radius:0 0 13px 13px; }
+ .torrent-table-wide-progress .torrent-wide-progress-row .progress-track { height:11px; margin:0; }
+ .torrent-table-wide-progress .torrent-wide-progress-row { transform:translateY(0); }
+ .torrent-table-wide-progress .torrent-wide-progress-row::after { content:'';display:block;height:8px; }
+ .torrent-table-wide-progress .torrent-main-row:hover td, .torrent-table-wide-progress .torrent-main-row:hover + .torrent-wide-progress-row td { background:#1b2b46; }
+ .torrent-table-wide-progress .progress-label { gap:7px; flex-wrap:wrap; justify-content:flex-start; }
+ .torrent-table-wide-progress .progress-cell { gap:0; }
+}
+@media (prefers-reduced-motion:reduce){.torrent-table-wide-progress .progress-fill{animation:none!important;transition:none!important}}
