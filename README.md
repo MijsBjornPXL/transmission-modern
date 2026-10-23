@@ -14,15 +14,30 @@
 
 ---
 
-# Transmission Modern
+# Transmission Modern — Modern Transmission Web UI
 
-**A modern, responsive and customizable web interface for Transmission.**
+**A beautiful, responsive and customizable alternative Transmission Web Interface for desktop and mobile.**
 
-Developed by **M1jsXploit** · **v2.6.0** · Vanilla HTML, CSS and JavaScript · No build step
+Transmission Modern is a modern, open-source **Transmission BitTorrent Web UI** created by **M1jsXploit**. It transforms the default Transmission web interface into a sleek, animated dashboard featuring **8 customizable color themes**, real-time torrent monitoring, responsive layouts, and intuitive torrent management.
 
-Transmission Modern replaces the default Transmission web interface with a clean, dark-first dashboard designed for both desktop and mobile browsers. It combines compact torrent management, animated progress indicators and eight selectable color themes, while continuing to use your existing Transmission daemon and RPC endpoint.
+Designed for **Linux servers, Debian, Ubuntu, home servers, NAS systems, and self-hosted environments**, Transmission Modern provides a modern alternative to the traditional Transmission Web UI.
 
-> **Unofficial community project.** Not affiliated with, maintained by, or endorsed by the Transmission project.
+### Key Features
+
+- **Modern Transmission Web UI** — Beautiful, responsive dashboard with smooth animations.
+- **8 Customizable Themes** — Ocean Blue, Amethyst, Emerald, Sunset, Obsidian Black, Graphite Gray, Pearl White, and Aurora.
+- **Mobile-Friendly Torrent Client** — Optimized for smartphones, tablets, and desktop browsers.
+- **Minimal & Cards View** — Switch between compact torrent lists and detailed cards.
+- **Animated Progress Bars** — Smooth, visual torrent download progress.
+- **Real-Time Torrent Monitoring** — Track download speed, upload speed, status, and progress.
+- **Easy Installation** — Simple installation script with backup and rollback support.
+- **Self-Hosted Interface** — Designed to work with the Transmission BitTorrent daemon.
+
+### Why Transmission Modern?
+
+Looking for a **modern Transmission Web UI**, a **Transmission web interface alternative**, or a **mobile-friendly Transmission torrent dashboard**?
+
+Transmission Modern combines an attractive design with practical torrent management, making it a customizable frontend for your existing Transmission installation.
 
 ## Preview
 
