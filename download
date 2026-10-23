@@ -1,9 +1,0 @@
-.DS_Store
-Thumbs.db
-*.log
-*.bak
-*.tmp
-node_modules/
-.vscode/
-.idea/
-__pycache__/
