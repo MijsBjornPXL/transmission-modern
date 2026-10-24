@@ -1,0 +1,188 @@
+/* Transmission Modern v2.7 — framework-free editable dashboard grid */
+.dashboard-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px;align-items:start;grid-auto-flow:row dense;min-width:0}
+.dashboard-grid>.dashboard-tile{grid-column:span var(--tile-span,3);min-width:0;min-height:var(--tile-height,80px);align-self:start;margin:0;position:relative}
+.dashboard-grid>.main-section{grid-column:span var(--tile-span,12);min-height:var(--tile-height,340px)}
+.dashboard-grid>.status-stat{height:var(--tile-height,80px);border:1px solid var(--theme-border,var(--border));border-radius:14px;overflow:hidden;display:flex;align-items:center;gap:12px}
+.dashboard-grid>.status-stat+.status-stat{border-left:1px solid var(--theme-border,var(--border))}
+.dashboard-grid>.main-section{width:100%;max-width:100%}
+.grid-edit-trigger{width:42px;min-width:42px;padding:0;gap:0;justify-content:center}.grid-edit-label{display:none!important}
+.grid-edit-trigger[aria-pressed="true"]{border-color:var(--accent,var(--blue));color:var(--accent,var(--blue));box-shadow:0 0 0 2px var(--theme-glow,transparent)}
+.grid-editor-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:13px;padding:14px 16px;margin:0 0 15px;border:1px solid var(--theme-border,var(--border));border-radius:14px;background:var(--theme-panel,var(--panel))}
+.grid-editor-instructions{display:flex;flex-direction:column;gap:2px;font-size:12px}
+.grid-editor-instructions span{color:var(--muted);font-size:11px}
+.grid-editor-visibility{display:flex;gap:7px;flex-wrap:wrap}
+.grid-editor-visibility label{display:flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid var(--theme-border,var(--border));border-radius:8px;font-size:11px;cursor:pointer;user-select:none}
+.grid-editor-visibility input{accent-color:var(--accent,var(--blue))}
+.grid-editor-buttons{display:flex;gap:7px;flex-wrap:wrap}
+.dashboard-grid.is-editing>.dashboard-tile{outline:2px dashed color-mix(in srgb,var(--accent,var(--blue)) 55%,transparent);outline-offset:-2px;transition:none!important}
+.dashboard-grid.is-editing>.dashboard-tile:hover{outline-color:var(--accent,var(--blue))}
+.dashboard-grid.is-editing>.dashboard-tile.grid-drop-target{outline:3px solid var(--accent,var(--blue));outline-offset:-3px}
+.dashboard-grid.is-editing>.dashboard-tile.grid-dragging{opacity:.55}
+.dashboard-grid.is-editing>.dashboard-tile.grid-hidden{display:none!important}
+.dashboard-tile:not(.grid-editing)>.grid-tile-controls{display:none}
+.grid-tile-controls{position:absolute;z-index:18;top:6px;right:7px;display:flex;align-items:center;gap:5px;padding:4px;border:1px solid var(--theme-border,var(--border));border-radius:10px;background:var(--theme-panel-deep,var(--panel));box-shadow:0 4px 15px #0005}
+.grid-tile-drag{border:0;border-radius:7px;background:var(--theme-hover,var(--panel-raised));color:var(--text);padding:6px 10px;cursor:grab;touch-action:none;font-size:12px;font-weight:700;user-select:none}
+.grid-tile-drag:active{cursor:grabbing}
+.grid-tile-size{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 4px}
+.grid-tile-resize{position:absolute;z-index:19;bottom:3px;right:3px;width:26px;height:26px;border:0;border-radius:6px;background:var(--theme-panel-deep,var(--panel));color:var(--accent,var(--blue));cursor:nwse-resize;touch-action:none;display:grid;place-items:center;font-size:19px;line-height:1}
+.grid-tile-drag:focus-visible,.grid-tile-resize:focus-visible{outline:2px solid var(--accent,var(--blue));outline-offset:2px}
+.dashboard-grid.is-editing .main-section .section-head{padding-right:112px}
+@media(max-width:760px), (orientation:landscape) and (max-height:600px) and (max-width:1024px){
+ .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+ .dashboard-grid>.dashboard-tile{grid-column:span min(4,var(--tile-span,1));min-height:var(--tile-height,60px)}
+ .dashboard-grid>.main-section{grid-column:span min(4,var(--tile-span,4));min-height:var(--tile-height,260px)}
+ .dashboard-grid>.status-stat{padding:9px 7px;min-width:0;overflow:hidden}
+ .dashboard-grid>.status-stat .status-icon{display:none}
+ .dashboard-grid>.status-stat .status-copy{min-width:0}
+ .dashboard-grid>.status-stat .status-value{overflow:hidden;text-overflow:ellipsis;font-size:clamp(11px,2.5vw,15px)}
+ .grid-edit-label{display:none}
+ .grid-edit-trigger{width:40px;min-width:40px;padding:0}
+ .grid-editor-toolbar{padding:10px;gap:9px}
+ .grid-editor-visibility{width:100%}
+ .grid-tile-controls{top:3px;right:3px;padding:2px}
+ .grid-tile-drag{font-size:11px;padding:5px}
+ .grid-tile-size{display:none}
+ .dashboard-grid.is-editing>.status-stat{padding-top:39px}
+ .dashboard-grid.is-editing .main-section .section-head{padding-right:0;padding-top:35px}
+}
+@media(prefers-reduced-motion:reduce){.dashboard-grid.is-editing>.dashboard-tile{transition:none!important}}
+
+/* v2.7.1: each statistic has an independent height even when its grid row grows. */
+.dashboard-grid>.status-stat{align-self:start;max-height:none}
+.dashboard-grid>.main-section{align-self:start;height:auto}
+.dashboard-grid.is-editing>.dashboard-tile{cursor:grab;touch-action:none;user-select:none}
+.dashboard-grid.is-editing>.dashboard-tile.grid-dragging{cursor:grabbing;opacity:.68}
+.dashboard-grid.is-editing>.main-section button,.dashboard-grid.is-editing>.main-section input,.dashboard-grid.is-editing>.main-section select{cursor:auto}
+.dashboard-grid.is-editing>.dashboard-tile .grid-tile-resize{cursor:nwse-resize}
+
+/* v2.7.2: smooth drag preview and animated live reordering. */
+.dashboard-grid.is-editing{grid-auto-flow:row}
+.dashboard-grid.is-editing>.dashboard-tile.grid-drag-placeholder{
+ opacity:.26!important;
+ outline:2px dashed var(--accent,var(--blue));
+ outline-offset:-2px;
+ pointer-events:none;
+}
+.grid-drag-preview{
+ position:fixed!important;
+ z-index:2147483000!important;
+ box-sizing:border-box!important;
+ margin:0!important;
+ min-height:0!important;
+ max-width:none!important;
+ pointer-events:none!important;
+ opacity:.93!important;
+ transform:translate3d(0,0,0);
+ will-change:transform;
+ box-shadow:0 16px 45px #0009,0 0 0 2px var(--accent,var(--blue))!important;
+ border-radius:14px;
+ overflow:hidden;
+ cursor:grabbing!important;
+}
+.grid-drag-preview .grid-tile-controls,.grid-drag-preview .grid-tile-resize{display:none!important}
+
+/* v2.7.3: fast, lightweight tile dragging. */
+.grid-drag-preview{contain:layout paint style;backface-visibility:hidden;}
+.grid-drag-preview .grid-preview-title{display:flex;align-items:center;justify-content:center;height:100%;font-size:20px;font-weight:700;color:var(--text);background:var(--theme-panel,var(--panel));border:1px solid var(--theme-border,var(--border));border-radius:14px}
+
+/* v2.8: the stats and every torrent share one reorderable grid. */
+.torrent-library-controls{margin:0 0 16px;padding:0;background:none;border:0}
+.torrent-library-controls .torrent-container:empty{display:none}
+.torrent-library-controls .torrent-container:not(:empty){margin-bottom:12px}
+.torrent-library-controls .footer{margin:8px 0 0}
+.dashboard-grid{grid-auto-flow:row;align-items:start}
+.dashboard-grid>.torrent-dashboard-tile{grid-column:span var(--tile-span,6);min-height:var(--tile-height,180px);height:auto;display:flex;flex-direction:column;position:relative;min-width:0;align-self:start;border:1px solid var(--theme-border,var(--border));border-radius:14px;background:var(--theme-panel,var(--panel));overflow:hidden}
+.dashboard-grid>.torrent-dashboard-tile .torrent-tile-content{flex:1;min-width:0;display:flex;flex-direction:column}
+.dashboard-grid>.torrent-dashboard-tile .torrent-card{border:0;background:transparent;flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.dashboard-grid>.torrent-dashboard-tile .card-progress{margin-top:auto}
+.dashboard-grid>.torrent-dashboard-tile .compact-torrent{border:0;background:transparent;margin:0;flex:1;min-width:0;padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.dashboard-grid>.torrent-dashboard-tile .compact-row{display:flex;align-items:center;gap:9px}
+.dashboard-grid>.torrent-dashboard-tile .compact-info{min-width:0;flex:1}
+.dashboard-grid>.torrent-dashboard-tile .compact-title{max-width:100%}
+.dashboard-grid>.torrent-dashboard-tile .compact-meta{font-size:11px;color:var(--muted);margin-top:5px}
+.dashboard-grid>.torrent-dashboard-tile .compact-controls{display:flex;align-items:center;gap:4px}
+.dashboard-grid>.torrent-dashboard-tile .compact-progress{margin-top:3px}
+.torrent-tile-select{position:absolute;top:9px;left:9px;z-index:4;display:flex;align-items:center;gap:5px;color:var(--muted);font-size:10px;opacity:0;transition:opacity .15s}
+.torrent-tile-select:focus-within,.torrent-dashboard-tile:hover .torrent-tile-select{opacity:1}
+.torrent-dashboard-tile .torrent-tile-content{padding-top:7px}
+.dashboard-grid.is-editing>.torrent-dashboard-tile .torrent-tile-select{display:none}
+.dashboard-grid.is-editing>.torrent-dashboard-tile .torrent-tile-content{padding-top:32px}
+.dashboard-grid.is-editing>.torrent-dashboard-tile .grid-tile-controls{top:6px}
+.dashboard-grid>.torrent-dashboard-tile.is-minimal{min-height:var(--tile-height,120px)}
+.grid-editor-visibility{max-height:115px;overflow-y:auto;scrollbar-width:thin}
+.grid-editor-visibility label{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grid-drag-preview.grid-preview-title{display:flex;align-items:center;justify-content:center;padding:14px;background:var(--theme-panel,var(--panel));border:1px solid var(--theme-border,var(--border));color:var(--text);font-size:14px;font-weight:700;text-align:center;overflow:hidden;overflow-wrap:anywhere}
+@media(max-width:760px), (orientation:landscape) and (max-height:600px) and (max-width:1024px){
+ .dashboard-grid>.torrent-dashboard-tile{grid-column:span min(4,var(--tile-span,4));min-height:var(--tile-height,180px)}
+ .dashboard-grid>.torrent-dashboard-tile .compact-torrent{padding:12px}
+ .torrent-tile-select{opacity:1}
+ .dashboard-grid.is-editing>.torrent-dashboard-tile .torrent-tile-content{padding-top:32px}
+}
+
+/* v2.8.1: resize handles are available exclusively in dashboard edit mode.
+   Use the grid's edit-state rather than hover/focus so normal browsing stays clean. */
+.dashboard-grid:not(.is-editing) .grid-tile-resize,
+.dashboard-grid:not(.is-editing) .grid-tile-controls {display:none!important;}
+.dashboard-grid.is-editing .grid-tile-resize {display:grid;}
+
+/* v2.8.2: independently movable Library header and Search & filters panels. */
+.dashboard-grid>.dashboard-library-header,
+.dashboard-grid>.dashboard-library-tools{
+  grid-column:span var(--tile-span,12);
+  min-width:0;
+  min-height:var(--tile-height,90px);
+  height:auto;
+  position:relative;
+  align-self:start;
+  padding:0;
+  background:transparent;
+  border:0;
+  overflow:visible;
+}
+.dashboard-library-header .section-head{margin:0;min-height:72px;align-items:center;}
+.dashboard-library-tools .tools{margin:0;min-height:68px;align-content:center;}
+.dashboard-grid.is-editing>.dashboard-library-header,
+.dashboard-grid.is-editing>.dashboard-library-tools{
+  border-radius:12px;
+  padding:8px;
+  min-height:var(--tile-height,90px);
+}
+.dashboard-grid.is-editing>.dashboard-library-header .section-head,
+.dashboard-grid.is-editing>.dashboard-library-tools .tools{padding-top:34px;}
+.dashboard-grid.is-editing>.dashboard-library-header .section-head{padding-right:0;}
+.dashboard-grid.is-editing>.dashboard-library-tools .tools{padding-right:0;}
+.dashboard-grid.is-editing>.dashboard-library-tools .grid-tile-controls{z-index:30;}
+@media(max-width:760px), (orientation:landscape) and (max-height:600px) and (max-width:1024px){
+ .dashboard-grid>.dashboard-library-header,
+ .dashboard-grid>.dashboard-library-tools{grid-column:span min(4,var(--tile-span,4));}
+ .dashboard-library-header .section-head{min-height:54px;}
+ .dashboard-library-tools .tools{min-height:90px;}
+}
+
+/* v2.8.4: the library title/theme/view bar is fixed in the document flow.
+   Search and filter/sort are two independent draggable tiles. */
+.fixed-library-header{margin:0 0 14px;min-width:0;}
+.fixed-library-header .section-head{margin:0;min-height:68px;align-items:center;}
+.dashboard-grid>.dashboard-library-search,
+.dashboard-grid>.dashboard-library-filters{
+ grid-column:span var(--tile-span,6);min-width:0;min-height:var(--tile-height,64px);
+ height:auto;position:relative;align-self:start;display:flex;align-items:center;
+ background:transparent;border:0;padding:0;overflow:visible;
+}
+.dashboard-library-search>.search-wrap{width:100%;flex:1;min-width:0;}
+.dashboard-library-filters>.filters{flex:1;min-width:0;overflow-x:auto;}
+.dashboard-library-filters>.sort-select-wrap{flex:0 0 auto;margin-left:10px;}
+.dashboard-grid.is-editing>.dashboard-library-search,
+.dashboard-grid.is-editing>.dashboard-library-filters{
+ border-radius:12px;padding:42px 8px 8px;align-items:flex-start;
+}
+.dashboard-grid.is-editing>.dashboard-library-search>.search-wrap,
+.dashboard-grid.is-editing>.dashboard-library-filters>.filters,
+.dashboard-grid.is-editing>.dashboard-library-filters>.sort-select-wrap{align-self:center;}
+@media(max-width:760px), (orientation:landscape) and (max-height:600px) and (max-width:1024px){
+ .fixed-library-header .section-head{min-height:56px;}
+ .dashboard-grid>.dashboard-library-search,
+ .dashboard-grid>.dashboard-library-filters{grid-column:span min(4,var(--tile-span,4));}
+ .dashboard-library-filters>.sort-select-wrap{margin-left:6px;}
+ .dashboard-library-filters>.sort-select-wrap select{max-width:113px;}
+}

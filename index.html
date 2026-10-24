@@ -5,41 +5,47 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080f21">
   <meta name="description" content="A modern responsive interface for Transmission">
-  <title>Transmission · Modern Themes v2.6</title>
+  <title>Transmission · Modern Themes v2.8.4</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232c79e8'/%3E%3Cpath d='M32 12v31m-10-9 10 10 10-10M20 51h24' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./css/base.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/desktop.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/mobile.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/theme.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/refinements.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/progress.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/wide-progress.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/presets.css?v=2.6.0">
-  <link rel="stylesheet" href="./css/minimal-fixed.css?v=2.6.0">
-  <script defer src="./js/rpc.js?v=2.6.0"></script>
-  <script defer src="./js/ui.js?v=2.6.0"></script>
-  <script defer src="./js/theme-picker.js?v=2.6.0"></script>
-  <script defer src="./js/app.js?v=2.6.0"></script>
+  <link rel="stylesheet" href="./css/base.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/desktop.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/mobile.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/theme.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/refinements.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/progress.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/wide-progress.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/presets.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/minimal-fixed.css?v=2.8.3">
+  <link rel="stylesheet" href="./css/grid-editor.css?v=2.8.3">
+  <script defer src="./js/rpc.js?v=2.8.3"></script>
+  <script defer src="./js/ui.js?v=2.8.3"></script>
+  <script defer src="./js/theme-picker.js?v=2.8.3"></script>
+  <script defer src="./js/app.js?v=2.8.3"></script>
+  <script defer src="./js/grid-editor.js?v=2.8.3"></script>
 </head>
 <body>
 <div class="app" id="app">
   <header class="header">
     <div class="brand"><div class="brand-icon" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 7v18m-7-7 7 7 7-7M9 29h18"/></svg></div><div class="brand-copy"><div class="brand-eyebrow">DOWNLOAD CENTER <span class="eyebrow-line"></span></div><h1>Transmission </h1><div class="connection"><span class="connection-dot" id="connectionDot"></span><span id="connectionText" aria-live="polite">Connecting…</span></div></div></div>
-    <div class="header-actions"><button class="button icon-button" id="refreshButton" title="Refresh now" aria-label="Refresh now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.8 9A7 7 0 0 1 18 6.5L20 12M4 12l2 5.5A7 7 0 0 0 18.5 15"/></svg></button><button class="button primary add-button" id="addButton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="add-label">Add torrent</span></button></div>
+    <div class="header-actions"><button class="button icon-button" id="refreshButton" title="Refresh now" aria-label="Refresh now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.8 9A7 7 0 0 1 18 6.5L20 12M4 12l2 5.5A7 7 0 0 0 18.5 15"/></svg></button><button class="button grid-edit-trigger" id="editDashboard" type="button" aria-pressed="false" title="Customize dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L9 17l-4 1 1-4Z"/></svg></button><button class="button primary add-button" id="addButton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="add-label">Add torrent</span></button></div>
   </header>
   <div id="offlineBanner" class="offline-banner" role="alert" hidden>Unable to reach Transmission. Showing last received data. <button id="retryButton" type="button">Retry</button></div>
-  <div class="status-strip" aria-label="Transmission overview">
-    <div class="status-stat download-stat"><div class="status-icon" aria-hidden="true">↓</div><div class="status-copy"><div class="status-label">DOWNLOAD</div><div class="status-value down" id="statDownload">—</div></div></div>
-    <div class="status-stat upload-stat"><div class="status-icon" aria-hidden="true">↑</div><div class="status-copy"><div class="status-label">UPLOAD</div><div class="status-value up" id="statUpload">—</div></div></div>
-    <div class="status-stat active-stat"><div class="status-icon" aria-hidden="true">◉</div><div class="status-copy"><div class="status-label">ACTIVE</div><div class="status-value" id="statActive">—</div></div></div>
-    <div class="status-stat total-stat"><div class="status-icon" aria-hidden="true">▤</div><div class="status-copy"><div class="status-label">TOTAL</div><div class="status-value" id="statTotal">—</div></div></div>
-  </div>
-  <section class="main-section" aria-labelledby="torrentsTitle">
-    <div class="section-head"><div><div class="section-eyebrow">YOUR LIBRARY</div><h2 id="torrentsTitle">Torrents <span class="total-chip" id="totalChip">0</span></h2><span class="section-subtitle" id="lastUpdated">Waiting for first update</span></div>
-      <div class="section-actions"><button type="button" class="theme-trigger" id="themeButton" title="Choose color theme" aria-label="Choose color theme" aria-haspopup="dialog" aria-controls="themeDialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="9" r="2"/><circle cx="15" cy="8" r="2"/><circle cx="16" cy="15" r="2"/><path d="M8 15h.01"/></svg></button><div class="view-toggle" role="group" aria-label="Torrent view"><button class="view-btn" id="viewMinimal" aria-pressed="true" title="Compact list"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Minimal</span></button><button class="view-btn" id="viewCards" aria-pressed="false" title="Cards"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Cards</span></button></div></div>
+  <div class="grid-editor-toolbar" id="gridToolbar" hidden><div class="grid-editor-instructions"><strong>Customize your dashboard</strong><span>Drag stats, torrent tiles, search and filter tiles · resize from the corner · choose which tiles to show</span></div><div class="grid-editor-visibility" id="gridVisibility"></div><div class="grid-editor-buttons"><button class="button small" id="gridReset" type="button">Reset layout</button><button class="button small" id="gridCancel" type="button">Cancel</button><button class="button small primary" id="gridSave" type="button">Save layout</button></div></div>
+  <section class="main-section torrent-library-controls" aria-labelledby="torrentsTitle">
+    <div class="bulk-bar" id="bulkBar" hidden><span id="selectedCount">0 selected</span><button class="button small" data-bulk="start">Resume</button><button class="button small" data-bulk="stop">Pause</button><button class="button small" data-bulk="clear">Clear</button><button class="button small danger-outline" data-bulk="remove">Remove</button></div>
+    <div class="torrent-container" id="torrentContainer">
+      <div class="empty-state" id="emptyState"><strong>Connecting to Transmission…</strong><p>Loading your torrents.</p></div>
     </div>
-    <div class="tools">
+  </section>
+    <div class="fixed-library-header"><div class="section-head"><div><div class="section-eyebrow">YOUR LIBRARY</div><h2 id="torrentsTitle">Torrents <span class="total-chip" id="totalChip">0</span></h2><span class="section-subtitle" id="lastUpdated">Waiting for first update</span></div>
+      <div class="section-actions"><button type="button" class="theme-trigger" id="themeButton" title="Choose color theme" aria-label="Choose color theme" aria-haspopup="dialog" aria-controls="themeDialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="9" r="2"/><circle cx="15" cy="8" r="2"/><circle cx="16" cy="15" r="2"/><path d="M8 15h.01"/></svg></button><div class="view-toggle" role="group" aria-label="Torrent view"><button class="view-btn" id="viewMinimal" aria-pressed="true" title="Compact list"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Minimal</span></button><button class="view-btn" id="viewCards" aria-pressed="false" title="Cards"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Cards</span></button></div></div>
+    </div></div>
+
+  <div class="dashboard-grid" id="dashboardGrid" aria-label="Customizable dashboard">
+    <div class="dashboard-tile dashboard-library-search" data-tile="library-search">
       <label class="search-wrap"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="sr-only">Search torrents</span><input id="searchInput" type="search" autocomplete="off" placeholder="Search torrents…"></label>
+    </div>
+    <div class="dashboard-tile dashboard-library-filters" data-tile="library-filters">
       <div class="filters" id="filters" aria-label="Filter torrents">
         <button class="filter is-active" data-filter="all" aria-pressed="true">All <span data-count="all">0</span></button>
         <button class="filter" data-filter="downloading" aria-pressed="false">Downloading <span data-count="downloading">0</span></button>
@@ -50,12 +56,13 @@
       </div>
       <label class="sort-select-wrap" title="Sort torrents"><svg viewBox="0 0 24 24"><path d="M4 7h12M4 12h8M4 17h4m13-10-3-3-3 3m3-3v16"/></svg><span class="sr-only">Sort by</span><select id="sortSelect"><option value="activity">Activity</option><option value="name">Name</option><option value="progress">Progress</option><option value="down">Download speed</option><option value="up">Upload speed</option><option value="size">Size</option><option value="added">Date added</option></select></label>
     </div>
-    <div class="bulk-bar" id="bulkBar" hidden><span id="selectedCount">0 selected</span><button class="button small" data-bulk="start">Resume</button><button class="button small" data-bulk="stop">Pause</button><button class="button small" data-bulk="clear">Clear</button><button class="button small danger-outline" data-bulk="remove">Remove</button></div>
-    <div class="torrent-container" id="torrentContainer">
-      <div class="empty-state" id="emptyState"><strong>Connecting to Transmission…</strong><p>Loading your torrents.</p></div>
-    </div>
-    <footer class="footer"><span id="showingCount">—</span><span>Transmission Modern Themes v2.6 · <span id="serverVersion">RPC</span></span></footer>
-  </section>
+    <div class="status-stat download-stat dashboard-tile" data-tile="download"><div class="status-icon" aria-hidden="true">↓</div><div class="status-copy"><div class="status-label">DOWNLOAD</div><div class="status-value down" id="statDownload">—</div></div></div>
+    <div class="status-stat upload-stat dashboard-tile" data-tile="upload"><div class="status-icon" aria-hidden="true">↑</div><div class="status-copy"><div class="status-label">UPLOAD</div><div class="status-value up" id="statUpload">—</div></div></div>
+    <div class="status-stat active-stat dashboard-tile" data-tile="active"><div class="status-icon" aria-hidden="true">◉</div><div class="status-copy"><div class="status-label">ACTIVE</div><div class="status-value" id="statActive">—</div></div></div>
+    <div class="status-stat total-stat dashboard-tile" data-tile="total"><div class="status-icon" aria-hidden="true">▤</div><div class="status-copy"><div class="status-label">TOTAL</div><div class="status-value" id="statTotal">—</div></div></div>
+
+  </div>
+  <footer class="footer"><span id="showingCount">—</span><span>Transmission Modern Themes v2.8.4 · <span id="serverVersion">RPC</span></span></footer>
 </div>
 <dialog class="theme-dialog" id="themeDialog" aria-labelledby="themeDialogTitle">
   <div class="theme-dialog-header"><div><span class="theme-kicker">PERSONALIZATION</span><h2 id="themeDialogTitle">Choose your theme</h2><p>Pick a color palette for your dashboard.</p></div><button type="button" class="theme-dialog-close" id="themeClose" aria-label="Close theme picker">✕</button></div>
@@ -68,6 +75,8 @@
     <button class="theme-option" type="button" data-theme-choice="graphite" aria-pressed="false"><span class="theme-preview" style="--sw1:#bec7d3;--sw2:#566172;--sw3:#20242a"></span><span class="theme-option-label">Graphite Gray</span><span class="theme-check" aria-hidden="true">✓</span></button>
     <button class="theme-option" type="button" data-theme-choice="pearl" aria-pressed="false"><span class="theme-preview" style="--sw1:#327eea;--sw2:#dce9fa;--sw3:#f4f7fc"></span><span class="theme-option-label">Pearl White</span><span class="theme-check" aria-hidden="true">✓</span></button>
     <button class="theme-option" type="button" data-theme-choice="aurora" aria-pressed="false"><span class="theme-preview" style="--sw1:#64e8d5;--sw2:#487cd8;--sw3:#0b1020"></span><span class="theme-option-label">Aurora</span><span class="theme-check" aria-hidden="true">✓</span></button>
+    <button class="theme-option" type="button" data-theme-choice="arctic" aria-pressed="false"><span class="theme-preview" style="--sw1:#38dff5;--sw2:#103648;--sw3:#071d29"></span><span class="theme-option-label">Arctic Cyan</span><span class="theme-check" aria-hidden="true">✓</span></button>
+    <button class="theme-option" type="button" data-theme-choice="cyberpunk" aria-pressed="false"><span class="theme-preview" style="--sw1:#ff4fd8;--sw2:#9d6bff;--sw3:#180d24"></span><span class="theme-option-label">Cyberpunk Neon</span><span class="theme-check" aria-hidden="true">✓</span></button>
   </div>
   <p class="theme-dialog-note">Your choice is saved in this browser.</p>
 </dialog>

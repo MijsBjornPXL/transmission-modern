@@ -2,225 +2,225 @@
 
 <p align="center">
   <img src="docs/screenshots/transmission-modern-showcase.png"
-       alt="Transmission Modern by M1jsXploit"
+       alt="Transmission Modern by M1jsXploit — desktop and mobile showcase"
        width="100%">
 </p>
 
 <p align="center">
-  A modern, responsive Transmission Web UI with 8 customizable themes.
-  <br>
-  Created by <strong>M1jsXploit</strong>
+  <strong>A modern, responsive Transmission BitTorrent Web UI with 10 customizable themes and a fully editable dashboard.</strong><br>
+  Created by <strong>M1jsXploit</strong> · Version <strong>2.8.4</strong>
 </p>
 
 ---
 
-# Transmission Modern
+## Overview
 
-**A modern, responsive and customizable web interface for Transmission.**
+**Transmission Modern** is an open-source alternative web interface for the Transmission BitTorrent daemon. It combines a customizable dashboard grid, individually movable torrent tiles, ten color themes, animated progress bars, and a responsive desktop/mobile experience.
 
-Developed by **M1jsXploit** · **v2.6.0** · Vanilla HTML, CSS and JavaScript · No build step
-
-Transmission Modern replaces the default Transmission web interface with a clean, dark-first dashboard designed for both desktop and mobile browsers. It combines compact torrent management, animated progress indicators and eight selectable color themes, while continuing to use your existing Transmission daemon and RPC endpoint.
+Designed for Linux, Debian, Ubuntu, NAS, homelab, and other self-hosted Transmission installations. It uses the existing Transmission RPC endpoint; no separate backend or build step is required.
 
 > **Unofficial community project.** Not affiliated with, maintained by, or endorsed by the Transmission project.
 
-## Preview
+## Highlights
+
+- **Fully customizable dashboard:** use the pencil icon beside Refresh to enter Edit Mode.
+- **One unified grid:** drag individual torrent tiles between Download, Upload, Active, and Total statistics.
+- **Independent tile resizing:** resize one tile without changing the height of its neighbors.
+- **Separate Search and Filters tiles:** move and resize the search bar independently from the status filters and Activity sort control.
+- **Fixed Library header:** YOUR LIBRARY, torrent count, update time, theme picker, and Minimal/Cards controls stay in place.
+- **Smooth drag-and-drop:** live drag preview and animated rearrangement.
+- **Edit-only controls:** resize corners and drag handles are hidden outside Edit Mode.
+- **Saved layouts:** dashboard preferences are stored locally in the browser; new torrents are added to the grid.
+- **10 themes:** Ocean Blue, Amethyst, Emerald, Sunset, Obsidian Black, Graphite Gray, Pearl White, Aurora, Arctic Cyan, and Cyberpunk Neon.
+- **Torrent management:** add, pause, resume, inspect, filter, sort, and remove torrents.
+
+## Screenshots
 
 ### Desktop — Minimal view
-
-A compact, table-like overview for quickly scanning torrents, transfer rates, progress and status. The progress indicator runs along the bottom **inside each torrent row**.
 
 ![Transmission Modern desktop Minimal view](docs/screenshots/desktop-minimal.png)
 
 ### Desktop — Cards view
 
-An alternative layout with more space for each torrent's status, transfer speeds and progress.
-
 ![Transmission Modern desktop Cards view](docs/screenshots/desktop-cards.png)
 
 ### Mobile — Responsive dashboard
 
-A touch-friendly interface with a compact overview, search, filters and torrent actions. The screenshot below uses the **Arctic Cyan** accent style from an earlier build.
-
 <p align="center">
-  <img src="docs/screenshots/mobile-arctic-cyan.png" alt="Transmission Modern on a smartphone" width="370">
+  <img src="docs/screenshots/mobile-arctic-cyan.png" alt="Transmission Modern mobile screenshot" width="370">
 </p>
 
-### Theme selector
+### Theme picker
 
-Pick a theme from the palette button beside the **Minimal / Cards** switch. Your choice is saved locally in the current browser.
+![Transmission Modern theme picker](docs/screenshots/theme-picker-preview-v2.5.png)
 
-![Transmission Modern theme picker preview](docs/screenshots/theme-picker-preview-v2.5.png)
-
-*Theme picker screenshot from v2.5 (six options shown). Version 2.6 includes the full eight-theme selection listed below.*
-
-> All screenshots have been cropped to the application and identifying torrent names/server addresses have been blurred for privacy.
+*Some screenshots show earlier versions and may not include the v2.8.4 grid editor or all ten themes. The showcase image is a promotional mockup rather than a literal application screenshot.*
 
 ## Features
 
-| Category | What you get |
+| Feature | Description |
 | --- | --- |
-| **Dashboard** | Live download/upload speeds, active and total torrent counts, connection status |
-| **Two layouts** | Desktop-friendly **Minimal** and **Cards** views |
-| **Mobile support** | Responsive portrait UI and automatic compact view for phone landscape |
-| **Torrent management** | Add torrents using a magnet link, URL or `.torrent` file; pause, resume and remove |
-| **Details** | Torrent information with **General**, **Files**, **Peers** and **Trackers** tabs |
-| **Finding torrents** | Search, status filters and sorting by activity, name, progress, speed, size or date added |
-| **Batch actions** | Select torrents to pause, resume or remove multiple items |
-| **Progress indicators** | Smoothly animated progress bars with download percentage and downloaded amount |
-| **Personalization** | Eight themes, with the selected theme stored in your browser |
-| **Lightweight** | Static HTML/CSS/JS; no framework, build pipeline or additional backend |
+| Dashboard grid | Reorder and resize statistics and individual torrent tiles |
+| Library controls | Fixed library heading; independently movable search and filter/sort tiles |
+| View modes | Minimal and Cards |
+| Themes | Ten selectable color themes; choice saved in the browser |
+| Live monitoring | Download/upload speeds, torrent progress, statuses, and activity |
+| Torrent actions | Add by magnet link, URL, or `.torrent`; pause, resume, remove, inspect details |
+| Torrent details | General, Files, Peers, and Trackers tabs |
+| Finding torrents | Search, status filters, and sorting |
+| Batch actions | Select multiple torrents for supported actions |
+| Mobile support | Responsive portrait layout and compact landscape handling |
+| Installation | Shell installer with timestamped web-directory backup and restore script |
 
-The UI refreshes its data from Transmission approximately every five seconds, with a manual refresh button available in the header.
+The UI polls Transmission for updated data approximately every five seconds and provides a manual Refresh button.
 
-## Eight color themes
+## Ten color themes
 
 | Theme | Style |
 | --- | --- |
-| **Ocean Blue** | Deep navy and electric blue — the original look |
-| **Amethyst** | Dark purple with violet highlights |
-| **Emerald** | Rich green and teal accents |
-| **Sunset** | Warm orange and coral highlights |
-| **Obsidian Black** | Near-black with restrained neutral accents |
-| **Graphite Gray** | Charcoal and soft gray |
-| **Pearl White** | Light background with blue accents |
-| **Aurora** | Dark base with blue-green accents |
+| Ocean Blue | Deep navy and electric blue |
+| Amethyst | Dark purple and violet |
+| Emerald | Green and teal |
+| Sunset | Orange and coral |
+| Obsidian Black | Near-black and neutral accents |
+| Graphite Gray | Charcoal and soft gray |
+| Pearl White | Light background and blue accents |
+| Aurora | Dark base with blue-green accents |
+| Arctic Cyan | Icy cyan with deep blue panels |
+| Cyberpunk Neon | Dark purple with neon pink and violet |
 
-Open the **palette icon** above the torrent list to change the theme. The preference is saved with browser local storage, so desktop and phone can use different themes.
+Use the palette button next to Minimal/Cards to change themes. Preferences are stored in your browser, so separate devices can have different selections.
 
 ## Requirements
 
-- A running **Transmission daemon** with its Web UI/RPC endpoint enabled.
-- A modern desktop or mobile browser that can access the Transmission Web UI.
-- For the included installer: a Linux host with Bash, `install`, `cp`, `mktemp`, and permission to write to the Transmission web directory.
+- Running Transmission daemon with its Web UI/RPC endpoint enabled.
+- Modern desktop or mobile browser.
+- For the installer: Linux, Bash, and permission to write to the Transmission web directory.
 
-**Tested setup:** Transmission **3.00** on Debian. Other daemon versions and operating systems may work, but are not all verified.
+**Known working environment:** Debian with Transmission 4.1.0-beta.2 (as shown by the development test interface). Compatibility with other versions and distributions may vary.
 
 ## Installation
 
-The installer replaces files in Transmission's **web interface directory**, not the daemon itself. It creates a timestamped backup of that directory before copying the new UI. Existing torrents, downloaded data and daemon settings are not intentionally changed.
+The installer backs up the current Transmission **web directory** and installs HTML/CSS/JS files. It does not intentionally change the Transmission daemon configuration, torrents, or downloaded files.
 
-### Option A — Clone the GitHub repository
+### Option A — Clone the repository
 
 ```bash
-git clone https://github.com/M1jsXploit/transmission-modern.git
+git clone https://github.com/MijsBjornPXL/transmission-modern.git
 cd transmission-modern
 sudo bash install.sh
 ```
 
-### Option B — Install a release ZIP
+If the repository has been transferred to another GitHub account, replace the clone URL with the new repository URL.
 
-Download the ZIP from **Releases**, transfer it to your Linux host and run:
+### Option B — Download the v2.8.4 release ZIP
+
+Download `Transmission-Modern-v2.8.4.zip` from [Releases](https://github.com/MijsBjornPXL/transmission-modern/releases) and copy it to your server:
 
 ```bash
-unzip -o transmission-modern-v2.6.zip -d /tmp
-sudo bash /tmp/transmission-modern-v2.6/install.sh
+unzip -o Transmission-Modern-v2.8.4.zip -d /tmp
+sudo bash /tmp/transmission-modern/install.sh
 ```
 
-If your downloaded ZIP has a different filename, adjust the first command accordingly.
+### Web directory detection
 
-### Non-default web directory
-
-By default, the installer targets:
+The installer automatically discovers the Transmission Web UI directory. It checks the running daemon's `TR_WEB_HOME` setting first, then common package locations and Transmission installation folders. If multiple valid directories exist, it stops and asks you to choose the correct one. Common paths include:
 
 ```text
+/usr/share/transmission/public_html
 /usr/share/transmission/web
 ```
 
-If your distribution or installation uses a different location, specify it explicitly:
+For a custom path, specify it explicitly:
 
 ```bash
-sudo bash install.sh /path/to/transmission/web
+sudo bash install.sh /path/to/transmission/web-directory
 ```
 
-The target directory must already exist and contain Transmission's original `index.html`. The installer will stop if it cannot find it.
+The target directory must exist and contain `index.html`. The detected path is printed before installation, and a backup is created first. If the daemon uses a nonstandard location that cannot be detected, pass it explicitly.
 
 ### Open the interface
 
-Visit your **existing** Transmission Web UI URL, for example:
+Use your existing Transmission URL, for example:
 
 ```text
-http://YOUR-SERVER:9091/transmission/web/?v=26
+http://YOUR-SERVER:9091/transmission/web/?v=284
 ```
 
-The `?v=26` suffix is a simple way to avoid an old cached page; it does not change your Transmission configuration.
+If an older UI remains visible, use **Ctrl + Shift + R** or a private browser tab. A daemon restart is usually unnecessary for static UI changes.
 
-If you still see the previous UI, force-refresh with **Ctrl + Shift + R** (desktop) or open a private tab (mobile). A Transmission daemon restart is usually unnecessary when only static web files have changed.
+## Customize the dashboard
 
-## Using the interface
+1. Click the **pencil icon** beside Refresh to enter Edit Mode.
+2. Drag a torrent tile or statistic tile to move it. Torrent tiles can be positioned among the statistics.
+3. Resize tiles using the corner handle. Each tile has an independent height.
+4. Move the **Search** tile and the **Filters / Activity** tile independently.
+5. Use visibility controls for supported tiles.
+6. Click **Save layout** to keep your changes, **Cancel** to discard them, or **Reset layout** to restore defaults.
 
-1. **Add a torrent:** click **Add torrent** (`+` on smaller screens). Paste a magnet link or torrent URL, or choose a `.torrent` file. You can optionally set a download directory or add it paused.
-2. **Pause / resume:** use the action button on a torrent row or card.
-3. **Inspect details:** open the torrent's actions and choose its details, including files, peers and trackers.
-4. **Filter / search:** use the search box and the **All / Downloading / Seeding / Paused / Completed / Errors** filters.
-5. **Switch layout:** use **Minimal** or **Cards**. Phone landscape automatically uses the compact layout to conserve vertical space.
-6. **Choose a theme:** click the palette icon. The selection is remembered on that browser.
-
-**Be careful with removal:** the remove dialog can optionally delete downloaded data. Read the confirmation before proceeding.
+The **YOUR LIBRARY** heading, torrent count, update time, theme selector, and Minimal/Cards controls stay fixed outside the movable grid. Layout preferences are saved in the current browser; they do not automatically sync between devices.
 
 ## Backup and rollback
 
-Every successful installation creates a backup under:
+Each successful installation creates a backup similar to:
 
 ```text
 /var/backups/transmission-modern/backup-YYYYMMDD-HHMMSS-XXXX/web
 ```
 
-The installer prints the exact backup directory and rollback command. To restore the latest backup for the default web path, run the `restore.sh` file from your extracted project directory:
+The installer records the exact web directory in each new backup and prints the rollback command. To restore the latest backup (for backups made with v2.8.4 or later):
 
 ```bash
 sudo bash restore.sh
 ```
 
-To restore a specific backup or custom web path:
+For backups made by older installers, or to override the target manually:
 
 ```bash
-sudo bash restore.sh /var/backups/transmission-modern/backup-YYYYMMDD-HHMMSS-XXXX /path/to/transmission/web
+sudo bash restore.sh /var/backups/transmission-modern/backup-YYYYMMDD-HHMMSS-XXXX /usr/share/transmission/public_html
 ```
 
-**Note:** rollback restores the backed-up files over the current directory; it does not remove unrelated files added later. Keep your backup if you plan to experiment with multiple versions.
+**Note:** restoring copies backed-up files over the target directory; it does not remove unrelated files introduced later. Keep your backup until you have verified the restored UI.
 
 ## Troubleshooting
 
-| Symptom | Suggested check |
+| Issue | What to try |
 | --- | --- |
-| **Old interface still appears** | Hard-refresh the page or use a private browser tab. |
-| **Cannot connect to Transmission** | Confirm the daemon is running, its Web UI/RPC is accessible, and authentication or RPC allowlists are configured correctly. |
-| **Installer cannot find the web directory** | Find the actual Transmission web path and pass it as the first installer argument. |
-| **Theme resets or does not persist** | Check whether the browser blocks local storage or clears site data. |
-| **Phone layout looks wrong** | Refresh after changing orientation; test in an up-to-date browser. |
-| **Need the original UI back** | Use `restore.sh` and the backup printed by the installer. |
+| Original Transmission UI still appears | Confirm the installer used the active web directory; hard-refresh the browser |
+| No connection to Transmission | Verify the daemon, RPC endpoint, authentication, and network restrictions |
+| Tiles are not draggable | Click the pencil icon to enter Edit Mode |
+| Layout changes are not saved | Click **Save layout**; check whether the browser permits local storage |
+| Resize corners remain visible | Hard-refresh to clear older cached CSS |
+| Theme resets | Check local storage and browser privacy settings |
+| Need the previous UI | Run `restore.sh` with the backup created by the installer |
 
 ## Security and privacy
 
-- **Do not expose the Transmission Web UI/RPC directly to the public internet** without appropriate access controls, network restrictions and encryption.
-- This theme does **not** add authentication or HTTPS. Those must be configured separately.
-- Review shell scripts before running them with `sudo`.
-- The UI talks to the existing Transmission RPC endpoint on the same origin; no separate application server is required.
-- Screenshot assets in this repository are sanitized. Please also redact server addresses, torrent names and any other sensitive information when opening an issue.
+- Do **not** expose Transmission RPC directly to the public internet without appropriate authentication, access restrictions, and HTTPS.
+- This theme does **not** add authentication or TLS; configure those separately.
+- Review shell scripts before executing them with `sudo`.
+- Avoid sharing screenshots containing private torrent names, server addresses, or credentials.
 
 ## Project structure
 
 ```text
 transmission-modern/
 ├── index.html
-├── css/                 # Layout, themes, responsive styles, progress bars
-├── js/                  # Transmission RPC, rendering, actions, theme picker
-├── docs/screenshots/    # Sanitized desktop and mobile screenshots
-├── install.sh           # Back up and install web assets
-├── restore.sh           # Restore an earlier web UI backup
+├── css/                  # Responsive styles, themes, progress, grid editor
+├── js/                   # RPC, torrent UI, theme picker, grid editor
+├── docs/screenshots/     # Screenshots and promotional showcase
+├── install.sh            # Backup and install
+├── restore.sh            # Restore an earlier web UI backup
 ├── README.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 └── LICENSE
 ```
 
-## Contributing and feedback
+## Contributing
 
-Issues and pull requests are welcome. For bug reports, include the Transmission version, operating system, browser, viewport/device, steps to reproduce, and a **privacy-safe screenshot** when useful. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Issues and pull requests are welcome. Include the Transmission version, operating system, browser, steps to reproduce, and privacy-safe screenshots. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License and credits
 
-Released under the [MIT License](LICENSE). Developed by **M1jsXploit**.
-
-Transmission is a separate project. This repository provides an **unofficial alternative web UI**, not a modified Transmission daemon.
+Released under the [MIT License](LICENSE). Developed by **M1jsXploit**. Transmission is a separate project.

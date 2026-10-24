@@ -1,22 +1,33 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-BACKUP_DIR="${1:-}"
-WEB_ROOT="${2:-/usr/share/transmission/web}"
+BACKUP_PARENT=/var/backups/transmission-modern
 if (( EUID != 0 )); then
-  echo "Run as root: sudo bash restore.sh /var/backups/transmission-modern/backup-..." >&2
+  echo "Run as root: sudo bash restore.sh [BACKUP_DIRECTORY] [WEB_DIRECTORY]" >&2
   exit 1
 fi
-if [[ -z "${BACKUP_DIR}" ]]; then
-  BACKUP_DIR="$(cat /var/backups/transmission-modern/last-backup 2>/dev/null || true)"
+BACKUP_DIR="${1:-}"
+if [[ -z "$BACKUP_DIR" ]]; then
+  BACKUP_DIR="$(cat "$BACKUP_PARENT/last-backup" 2>/dev/null || true)"
 fi
-if [[ -z "${BACKUP_DIR}" || "${BACKUP_DIR}" != /var/backups/transmission-modern/backup-* || ! -f "${BACKUP_DIR}/web/index.html" ]]; then
-  echo "Valid backup not found. Supply the backup directory printed during installation." >&2
+if [[ -z "$BACKUP_DIR" || "$BACKUP_DIR" != "$BACKUP_PARENT"/backup-* || ! -f "$BACKUP_DIR/web/index.html" ]]; then
+  echo "Valid backup not found. Specify a backup directory printed by the installer." >&2
   exit 1
 fi
-if [[ ! -d "${WEB_ROOT}" ]]; then
-  echo "Web directory missing: ${WEB_ROOT}" >&2
+# New installers record the exact original target; never guess on rollback.
+if [[ -n "${2:-}" ]]; then
+  WEB_ROOT="$2"
+elif [[ -f "$BACKUP_DIR/web-root" ]]; then
+  IFS= read -r WEB_ROOT < "$BACKUP_DIR/web-root"
+else
+  echo "This older backup does not record the original web directory." >&2
+  echo "Specify it explicitly: sudo bash restore.sh '$BACKUP_DIR' /path/to/web-directory" >&2
   exit 1
 fi
-cp -a -- "${BACKUP_DIR}/web/." "${WEB_ROOT}/"
-echo "Original Transmission web interface restored from: ${BACKUP_DIR}"
-echo "Refresh your browser with Ctrl+F5 (or a private tab on mobile)."
+if [[ ! -d "$WEB_ROOT" || ! -f "$WEB_ROOT/index.html" ]]; then
+  echo "Web directory missing or invalid: $WEB_ROOT" >&2
+  exit 1
+fi
+cp -a -- "$BACKUP_DIR/web/." "$WEB_ROOT/"
+echo "Transmission Web UI restored from: $BACKUP_DIR"
+echo "Restored to: $WEB_ROOT"
+echo "Refresh your browser with Ctrl+Shift+R."

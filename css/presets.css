@@ -82,3 +82,7 @@ html[data-theme="pearl"] .torrent-unified-grid .cell-stat,html[data-theme="pearl
 html[data-theme="pearl"] .torrent-table .icon-action{background:#e4edf9!important;color:#28466b!important;border-color:#b9cde5!important}
 html[data-theme="pearl"] .torrent-table th button{color:#435b7b}
 html[data-theme="pearl"] .progress-track{background:#cbd8e9}
+
+/* v2.7: Arctic Cyan and Cyberpunk Neon */
+html[data-theme="arctic"]{--accent:#38dff5;--accent-strong:#14b8d4;--accent-dark:#087d9b;--theme-bg:#071d29;--theme-bg-top:#124a60;--theme-panel:#103648;--theme-panel-deep:#0b2735;--theme-border:#275b70;--theme-muted:#a8d4df;--theme-glow:rgba(30,206,241,.20);--theme-bar:#8ff5ff;--theme-hover:#1b4b60}
+html[data-theme="cyberpunk"]{--accent:#ff4fd8;--accent-strong:#c63cb6;--accent-dark:#7546c9;--theme-bg:#180d24;--theme-bg-top:#452052;--theme-panel:#2b193d;--theme-panel-deep:#21132e;--theme-border:#633c79;--theme-muted:#d9b6e5;--theme-glow:rgba(247,65,211,.24);--theme-bar:#c29aff;--theme-hover:#422353}

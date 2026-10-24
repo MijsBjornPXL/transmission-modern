@@ -1,7 +1,7 @@
 (function(){'use strict';
 const $=id=>document.getElementById(id), U=window.TransmissionUI, rpc=new TransmissionRPC();
 const storage={getItem(key){try{return localStorage.getItem(key)}catch{return null}},setItem(key,val){try{localStorage.setItem(key,val)}catch{}}};
-const FIELDS=['id','name','status','error','error_string','percent_done','rate_download','rate_upload','eta','total_size','size_when_done','downloaded_ever','uploaded_ever','upload_ratio','added_date','activity_date','is_stalled','peers_connected','queue_position'];
+const FIELDS=['id','name','status','error','error_string','percent_done','rate_download','rate_upload','eta','total_size','size_when_done','downloaded_ever','uploaded_ever','upload_ratio','added_date','activity_date','is_stalled','peers_connected','queue_position','hash_string'];
 const DETAIL_FIELDS=[...FIELDS,'download_dir','peers_sending_to_us','files','peers','tracker_stats'];
 let previousRenderSignature='',torrents=[],filter='all',search='',sort='activity',descending=true,viewDesktop=storage.getItem('tm2-desktop-view')||'minimal',viewMobile=storage.getItem('tm2-mobile-view')||'minimal',detailId=null,detailTab='general',selected=new Set(),refreshing=false,lastOk=0,menuId=null,modalClose=null;
 const landscapePhone=()=>matchMedia('(orientation:landscape) and (max-height:600px) and (max-width:1024px)').matches;
@@ -33,32 +33,17 @@ const c=counts();for(const [k,v] of Object.entries(c)){const el=document.querySe
 $('totalChip').textContent=torrents.length;
 const a=filtered();$('showingCount').textContent=`Showing ${a.length} of ${torrents.length} torrents`;
 const desktop=viewDesktop==='minimal',phone=landscapePhone()||viewMobile==='minimal';
-const signature=[mobile()?'mobile':'desktop',landscapePhone()?'landscape':'regular',desktop?'table':'cards',phone?'compact':'cards',sort,descending?'desc':'asc',...a.map(t=>t.id)].join('|');
-const container=$('torrentContainer');
-if(signature!==previousRenderSignature){
-  container.innerHTML=`<div class="desktop-visible">${desktop?U.tableHead(sort,descending):'<div class="torrent-cards">'+a.map(U.card).join('')+'</div>'}</div><div class="mobile-visible">${phone?'<div class="mobile-compact">'+a.map(U.compact).join('')+'</div>':'<div class="torrent-cards">'+a.map(U.card).join('')+'</div>'}</div>`;
-  previousRenderSignature=signature;
+// Individual torrent tiles are managed by the grid editor, not the old monolithic list.
+if(window.TransmissionGrid){
+ window.TransmissionGrid.setTorrents(a,{view:mobile()?(phone?'minimal':'cards'):(desktop?'minimal':'cards'),selected});
+ const container=$('torrentContainer');
+ container.innerHTML=a.length?'':`<div class="empty-state"><strong>${torrents.length?'No matching torrents':'No torrents yet'}</strong><p>${torrents.length?'Try another filter or search.':'Add a magnet link or a .torrent file to begin.'}</p></div>`;
 }
-if(desktop){
- const body=$('tableBody');if(body){
-  for(const t of a){
-   let row=body.querySelector(`tr[data-id="${t.id}"]`);
-   const html=U.tableRow(t,selected.has(t.id));
-   if(!row){body.insertAdjacentHTML('beforeend',html);row=body.lastElementChild}
-   else if(row.outerHTML!==html)row=replaceKeepingProgress(row,html);
-  }
-  for(const row of body.querySelectorAll('tr[data-id]'))if(!a.some(t=>t.id===Number(row.dataset.id)))row.remove();
-  for(const t of a){const row=body.querySelector(`tr[data-id="${t.id}"]`);if(row)body.appendChild(row)}
- }
- const all=$('selectAll');if(all)all.checked=a.length>0&&a.every(t=>selected.has(t.id));
-}
-// Update existing cards individually instead of discarding the entire grid every 5 seconds.
-const cardsRoot=container.querySelector('.desktop-visible .torrent-cards');if(cardsRoot){for(const t of a){const old=cardsRoot.querySelector(`.torrent-card[data-id="${t.id}"]`),html=U.card(t);if(old&&old.outerHTML!==html)replaceKeepingProgress(old,html)}}
-const mobRoot=container.querySelector('.mobile-visible');if(mobRoot){const kind=phone?'.compact-torrent':'.torrent-card';for(const t of a){const old=mobRoot.querySelector(`${kind}[data-id="${t.id}"]`),html=phone?U.compact(t):U.card(t);if(old&&old.outerHTML!==html)replaceKeepingProgress(old,html)}}
-const empty=container.querySelector('.empty-state');if(!a.length&&!empty)container.insertAdjacentHTML('beforeend',`<div class="empty-state"><strong>${torrents.length?'No matching torrents':'No torrents yet'}</strong><p>${torrents.length?'Try another filter or search.':'Add a magnet link or a .torrent file to begin.'}</p></div>`);
-if(a.length&&empty)empty.remove();
-$('viewMinimal').classList.toggle('is-active',mobile()?phone:desktop);$('viewCards').classList.toggle('is-active',mobile()?!phone:!desktop);
-$('viewMinimal').setAttribute('aria-pressed',String(mobile()?phone:desktop));$('viewCards').setAttribute('aria-pressed',String(mobile()?!phone:!desktop));$('bulkBar').hidden=!selected.size;$('selectedCount').textContent=`${selected.size} selected`;
+$('viewMinimal').classList.toggle('is-active',mobile()?phone:desktop);
+$('viewCards').classList.toggle('is-active',mobile()?!phone:!desktop);
+$('viewMinimal').setAttribute('aria-pressed',String(mobile()?phone:desktop));
+$('viewCards').setAttribute('aria-pressed',String(mobile()?!phone:!desktop));
+$('bulkBar').hidden=!selected.size;$('selectedCount').textContent=`${selected.size} selected`;
 }
 async function refresh(){if(refreshing)return;refreshing=true;try{const [a,s]=await Promise.all([rpc.list(FIELDS),rpc.call('session_stats')]);torrents=a.torrents||[];selected=new Set([...selected].filter(id=>torrents.some(t=>t.id===id)));$('statDownload').textContent=U.rate(s.download_speed||0);$('statUpload').textContent=U.rate(s.upload_speed||0);$('statActive').textContent=s.active_torrent_count??torrents.filter(t=>t.status!==0).length;$('statTotal').textContent=s.torrent_count??torrents.length;$('serverVersion').textContent=rpc.version;lastOk=Date.now();$('lastUpdated').textContent=`Updated ${new Date().toLocaleTimeString()}`;setOnline(true);if(!$('modalBackdrop').hidden||!$('detailSheet').hidden||!$('contextMenu').hidden){/* keep active dialogs and menus */}render()}catch(err){setOnline(false,err);if(!lastOk)$('torrentContainer').innerHTML=`<div class="empty-state"><strong>Cannot connect to Transmission</strong><p>${U.e(err.message)}</p></div>`}finally{refreshing=false}}
 async function action(method,args={},message='Action completed'){try{await rpc.call(method,args);notify(message);await refresh();return true}catch(err){showError(err);return false}}

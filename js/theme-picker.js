@@ -1,8 +1,8 @@
 (function(){'use strict';
 const KEY='transmission-modern-theme';
-const THEMES=['blue','violet','emerald','sunset','obsidian','graphite','pearl','aurora'];
+const THEMES=['blue','violet','emerald','sunset','obsidian','graphite','pearl','aurora','arctic','cyberpunk'];
 let current='blue';
-try{const stored=localStorage.getItem(KEY);if(THEMES.includes(stored))current=stored;else if(stored==='cyan')current='blue';else if(stored==='rose')current='violet'}catch{}
+try{const stored=localStorage.getItem(KEY);if(THEMES.includes(stored))current=stored;else if(stored==='cyan')current='arctic';else if(stored==='rose')current='violet'}catch{}
 const root=document.documentElement;
 root.dataset.theme=current;
 const dialog=document.getElementById('themeDialog');
