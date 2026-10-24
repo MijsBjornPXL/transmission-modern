@@ -19,7 +19,22 @@
 
 Designed for Linux, Debian, Ubuntu, NAS, homelab, and other self-hosted Transmission installations. It uses the existing Transmission RPC endpoint; no separate backend or build step is required.
 
-> **Unofficial community project.** Not affiliated with, maintained by, or endorsed by the Transmission project.
+### Key Features
+
+- **Modern Transmission Web UI** — Beautiful, responsive dashboard with smooth animations.
+- **8 Customizable Themes** — Ocean Blue, Amethyst, Emerald, Sunset, Obsidian Black, Graphite Gray, Pearl White, and Aurora.
+- **Mobile-Friendly Torrent Client** — Optimized for smartphones, tablets, and desktop browsers.
+- **Minimal & Cards View** — Switch between compact torrent lists and detailed cards.
+- **Animated Progress Bars** — Smooth, visual torrent download progress.
+- **Real-Time Torrent Monitoring** — Track download speed, upload speed, status, and progress.
+- **Easy Installation** — Simple installation script with backup and rollback support.
+- **Self-Hosted Interface** — Designed to work with the Transmission BitTorrent daemon.
+
+### Why Transmission Modern?
+
+Looking for a **modern Transmission Web UI**, a **Transmission web interface alternative**, or a **mobile-friendly Transmission torrent dashboard**?
+
+Transmission Modern combines an attractive design with practical torrent management, making it a customizable frontend for your existing Transmission installation.
 
 ## Highlights
 
